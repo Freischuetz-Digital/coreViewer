@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--<basePath url="/db/apps/FreiDi_CoreViewer/data/"/>-->
+    <basePath url="/db/apps/contents/musicContent/"/>
+    <digilibPath url="http://freischuetz-digital.de/digilib/Scaler/freidi/"/>
+</config>

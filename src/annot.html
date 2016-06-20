@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Freischütz Digital –&#160;CoreViewer</title>
+        <meta name="author" content="Johannes Kepper"/>
+        <!--<link href="resources/css/coreViewer.min.css" type="text/css" rel="stylesheet"/>-->
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" href="resources/css/context.standalone.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+        <link href="resources/css/app.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="annotContent">
+            <h1>Annotation</h1>
+            <div id="leftBox">
+                <!--<div class="rdg">
+                    
+                    <!-\- Nav tabs -\->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Rendering</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">A</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">K<sup>A</sup><sub>1</sub></a></li>
+                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">K<sup>A</sup><sub>2</sub></a></li>
+                    </ul>
+                    
+                    <!-\- Tab panes -\->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active verovioTab" id="home">ads</div>
+                        <div role="tabpanel" class="tab-pane" id="profile"><img src="http://freischuetz-digital.de/digilib/Scaler/freidi/sources/A/00000087.jpg?dw=600&dh=250&wx=0.45188968641480837&wy=0.3620143557072021&ww=0.13894201561550745&wh=0.07945445392750662&mo=fit"/></div>
+                        <div role="tabpanel" class="tab-pane" id="messages">.asda.</div>
+                        <div role="tabpanel" class="tab-pane" id="settings">.asdaaa.</div>
+                    </div>
+                </div>-->
+                
+                <!--<div class="rdg">
+                    
+                    <!-\- Nav tabs -\->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home1" aria-controls="home" role="tab" data-toggle="tab">Rendering</a></li>
+                        <li role="presentation"><a href="#profile1" aria-controls="profile" role="tab" data-toggle="tab">D1849</a></li>
+                        <li role="presentation"><a href="#messages1" aria-controls="messages" role="tab" data-toggle="tab">K<sub>13</sub></a></li>
+                        <li role="presentation"><a href="#settings1" aria-controls="settings" role="tab" data-toggle="tab">K<sup>A</sup><sub>26</sub></a></li>
+                    </ul>
+                    
+                    <!-\- Tab panes -\->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active verovioTab" id="home1">ads</div>
+                        <div role="tabpanel" class="tab-pane" id="profile1">.sd.</div>
+                        <div role="tabpanel" class="tab-pane" id="messages1"><img src="http://freischuetz-digital.de/digilib/Scaler/freidi/sources/A/00000087.jpg?dw=600&dh=250&wx=0.45188968641480837&wy=0.3620143557072021&ww=0.23894201561550745&wh=0.17945445392750662&mo=fit"/></div>
+                        <div role="tabpanel" class="tab-pane" id="settings1">.asdaaa.</div>
+                    </div>
+                </div>-->
+            </div>
+            <div id="rightBox">
+                <div id="annotText" class="well"/>
+                <dl class="dl-horizontal">
+                    <dt>Categories</dt>
+                    <dd id="annotCategories"><!--Bogensetzung, Hg.-Korrektur, internal--></dd>
+                    <dt>Priority</dt>
+                    <dd id="annotPriority"><!--1--></dd>
+                    <dt>Parts</dt>
+                    <dd id="annotStaves"><!--Violini 1--></dd>
+                    <dt>Sources</dt>
+                    <dd id="annotSources"><!--<a target="_blank" href="http://rubin.upb.de:8092/exist/apps/EdiromOnline/?uri=xmldb:exist:///db/apps/contents/musicSources/freidi-musicSource_A.xml#A_mov6_measure148">A</a>--></dd>
+                    <dt>Measures</dt>
+                    <dd id="annotMeasures"><!--148, 149--></dd>
+                    <dt>Responsible</dt>
+                    <dd id="annotResp"><!--148, 149--></dd>
+                    <dt>ID</dt>
+                    <dd id="annotID"><!--a3af40686-1df0-48c2-aa43-f94dbbef9b3f--></dd>
+                    <dt>see also</dt>
+                    <dd id="otherAnnots"/>
+                </dl>
+            </div>
+        </div>
+        <div class="modal fade" id="fullPageModal" tabindex="-1" role="dialog" aria-labelledby="fullPageModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"/>
+                        </button>
+                        <h4 class="modal-title" id="fullPageModalLabel">Overview</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="full-page-carousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators"/>
+                            
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox"/>
+                            
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#full-page-carousel" role="button" data-slide="prev">
+                                <i class="fa fa-chevron-left fa-2x icon-prev"/>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#full-page-carousel" role="button" data-slide="next">
+                                <i class="fa fa-chevron-right fa-2x icon-next"/>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="openPageBtn" class="btn btn-default" data-dismiss="modal">Open Page</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close Overview</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"/>
+        <!--<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"/>-->
+        <script src="resources/js/context.js"/>
+        <!--<script src="http://www.verovio.org/javascript/latest/verovio-toolkit.js"/>-->
+        <!--<script src="resources/js/verovio-toolkit-256Mb.js"/>-->
+        <script src="resources/js/verovio-toolkit-0.9.10-dev-215f725-256Mb.js"/>
+        <script src="resources/js/annot.js"/>
+    </body>
+</html>

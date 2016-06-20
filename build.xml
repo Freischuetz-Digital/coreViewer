@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="coreViewer-xar" name="coreViewer">
+    <property name="project.version" value="0.x"/>
+    <property name="project.app" value="coreViewer"/>
+    <property name="build.dir" value="build"/>
+    <property name="release.dir" value="release"/>
+    <property name="dist.dir" value="dist"/>
+    <tstamp/>
+      
+    <target name="clean">
+        <delete dir="build/"/>
+        <delete dir="release/"/>
+    </target>
+    
+    <target name="reset">
+        <delete dir="build/"/>
+        <delete dir="release/"/>
+        <delete dir="dist/"/>
+    </target>
+ 
+     <target name="coreViewer-xar" depends="clean">
+               
+        <exec executable="git" outputproperty="git.tag" dir=".">
+            <arg line="tag --contains"/>
+        </exec>
+        <echo>Git tag: ${git.tag}</echo>
+        
+        <mkdir dir="${build.dir}"/>
+        <copydir dest="${build.dir}/coreViewer" src="src"/>
+        <copy todir="${build.dir}/coreViewer" encoding="UTF-8" outputencoding="UTF-8">
+            <file file="xar-adds/controller.xml"/>
+            <file file="xar-adds/repo.xml"/>
+            <file file="xar-adds/expath-pkg.xml"/>
+            <file file="xar-adds/pre-install.xql"/>
+            <file file="xar-adds/config.xml"/>
+            <filterchain>
+                <replacetokens>
+                    <token key="name" value="http://www.freischuetz-digital.de/xars/coreViewer"/>
+                    <token key="abbrev" value="FreiDi-coreViewer"/>
+                    <token key="version" value="${git.tag}-${DSTAMP}${TSTAMP}"/>
+                    <token key="title" value="FreiDi:coreViewer"/>
+                    <token key="author" value="FreiDi - Johannes Kepper"/>
+                    <token key="website" value="https://www.freischuetz-digital.de/tools/coreViewer"/>
+                    <token key="target" value="coreViewer"/>
+                </replacetokens>      
+            </filterchain>
+        </copy>
+        
+        <mkdir dir="${dist.dir}"/>
+        <zip basedir="${build.dir}/coreViewer/"
+            destfile="${dist.dir}/FreiDi_CoreViewer-${git.tag}-${DSTAMP}${TSTAMP}.xar"
+        />
+    </target>
+</project>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Freischütz Digital –&#160;CoreViewer</title>
+        <meta name="author" content="Johannes Kepper"/>
+        <!--<link href="resources/css/coreViewer.min.css" type="text/css" rel="stylesheet"/>-->
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" href="resources/css/context.standalone.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap-slider.min.css"/>
+        <!--<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet"/>-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+        <link href="resources/css/app.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <form class="navbar-form navbar-left form-horizontal">
+                        <!--<div class="form-group">
+                            <label for="movementSelect" class="col-sm-2 control-label">Satz</label>
+                            <div class="col-sm-10">
+                                <select id="movementSelect" class="form-control"/>
+                            </div>
+                        </div>-->
+                        <!--<label class="control-label" for="inputGroupSuccess3">
+                            <input checked="checked" data-toggle="toggle" data-size="small" type="checkbox"/>
+                            resolve shortcuts
+                        </label>-->
+                        <button id="openViewModalBtn" type="button" class="btn btn-default">Add view</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="views">
+            <div id="loading">loading data <i class="fa fa-spinner fa-pulse"/>
+            </div>
+        </div>
+        <div id="templates">
+            <div class="viewBox" style="display: none;">
+                <div class="leftBox">
+                    <h1>
+                        <span class="sourceSiglum">Sigle<small>Satzbezeichnung</small>
+                        </span>
+                        <span class="closeBtn">
+                            <i class="fa fa-times"/>
+                        </span>
+                    </h1>
+                    <div class="options">
+                        <label>Scale</label>
+                        <div class="scale">
+                            <input id="ex1" data-slider-id="ex1Slider" type="text" data-slider-tooltip="hide" data-slider-min="0.2" data-slider-max="1" data-slider-step=".005" data-slider-value="0.5"/>
+                        </div>
+                        <div class="shortCuts">
+                            <!--<label>Notenbild</label>-->
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary active showShortcutsBtn" title="">
+                                    <input type="radio" name="options" id="option1" checked="checked"/> Abbreviations
+                                </label>
+                                <label class="btn btn-primary resolveShortcutsBtn">
+                                    <input type="radio" name="options" id="option2"/> Expanded Text
+                                </label>
+                            </div>
+                        </div>
+                        <div class="">
+                            <!--<label><i class="fa fa-cogs"/> Konfiguration</label>-->
+                            <button class="btn btn-default btn-block adjustColorationBtn" type="button" style="display: block;">
+                                <i class="fa fa-eraser"/> Coloration
+                            </button>
+                            <button class="btn btn-default btn-block adjustScoreDefBtn" type="button">
+                                <i class="fa fa-sliders"/> Score Setup
+                            </button>
+                            <button class="btn btn-default btn-block adjustOverlays" type="button">
+                                <i class="fa fa-clone fa-flip-horizontal"/> Overlays
+                            </button>
+                            <button class="btn btn-default btn-block adjustAnnotations" type="button">
+                                <i class="fa fa-comments"/> Annotations
+                            </button>
+                        </div>
+                        
+                        <!--<div class="overlays">
+                            <label>Überblendungen</label>
+                            <div class="btnRow">
+                                <div class="btn btn-default">
+                                    <i class="fa fa-times"/>
+                                </div>
+                                <div class="btn btn-default">Auswählen<i class="fa fa-caret-down"/>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--<label>Besetzung</label>
+                        <div class="perfMedium"/>-->
+                    </div>
+                </div>
+                <div class="rightBox">
+                    <div class="renderBox"/>
+                </div>
+            </div>
+        </div>
+        
+        <!-- modals -->
+        <div class="modal fade" id="openViewModal" tabindex="-1" role="dialog" aria-labelledby="openViewModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"/>
+                        </button>
+                        <h4 class="modal-title" id="openViewModalLabel">Open new View</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="movementOverview" class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td class="empty"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="colorationModal" tabindex="-1" role="dialog" aria-labelledby="colorationModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"/>
+                        </button>
+                        <h4 class="modal-title" id="colorationModalLabel">Adjust Coloration</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Abbreviations</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Tremolo (&lt;mei:bTrem&gt; and &lt;mei:fTrem&gt;)<button class="btn btn-default btn-sm pull-right tremBtn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                    <li class="list-group-item">colla parte-Instructions<button class="btn btn-default btn-sm pull-right cpBtn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                    <li class="list-group-item">Measure repeats and other 'horizontal' abbreviations<button class="btn btn-default btn-sm pull-right rptBtn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">XPath<small style="margin-left: 10px;">Please include namespaces. Example: //mei:note[@stem.dir="up"]</small>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <span class="form-inline">
+                                    <input type="text" id="xpathInput" class="form-control form-inline"/>
+                                </span>
+                                <button class="btn btn-default btn-sm pull-right xpathBtn" data-toggle="button" aria-pressed="false">Display</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="scoreDefModal" tabindex="-1" role="dialog" aria-labelledby="scoreDefModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"/>
+                        </button>
+                        <h4 class="modal-title" id="scoreDefModalLabel">Adjust Score</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="scoreDefList" class="list-group"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="adjustScoreDefBtn" class="btn btn-default">Adjust Score</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="annotationsModal" tabindex="-1" role="dialog" aria-labelledby="annotationsModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-close"/>
+                        </button>
+                        <h4 class="modal-title" id="annotationsModalLabel">Annotations</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Sources considered</h4>
+                        <div id="annotationSources"/>
+                        <h4>Annotation categories</h4>
+                        <div class="catRow">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_dir" value="ediromAnnotCategory_dir" checked="checked"/> Directive
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_dynam" value="ediromAnnotCategory_dynam" checked="checked"/> Dynamics
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_slur" value="ediromAnnotCategory_slur" checked="checked"/> Slurs
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_articulation" value="ediromAnnotCategory_articulation" checked="checked"/> Articulation
+                            </label>
+                        </div>
+                        <div class="catRow">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_pitch" value="ediromAnnotCategory_pitch" checked="checked"/> Pitch
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_dur" value="ediromAnnotCategory_dur" checked="checked"/> Rhythm
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_tie" value="ediromAnnotCategory_tie" checked="checked"/> Ties
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_accidental" value="ediromAnnotCategory_accidental" checked="checked"/> Accidentals
+                            </label>
+                        </div>
+                        <div class="catRow">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_clef" value="ediromAnnotCategory_clef" checked="checked"/> Clefs
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_voicing" value="ediromAnnotCategory_voicing" checked="checked"/> Voices
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_notation" value="ediromAnnotCategory_notation" checked="checked"/> Notation
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_fermata" value="ediromAnnotCategory_fermata" checked="checked"/> Fermata
+                            </label>
+                        </div>
+                        <div class="catRow">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_agogics" value="ediromAnnotCategory_agogics" checked="checked"/> Agogics
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_tempo" value="ediromAnnotCategory_tempo" checked="checked"/> Tempo
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_lyrics" value="ediromAnnotCategory_lyrics" checked="checked"/> Lyrics
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_intervention" value="ediromAnnotCategory_intervention" checked="checked"/> Ed. Intervention
+                            </label>
+                        </div>
+                        <div class="catRow">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_perfMedium" value="ediromAnnotCategory_perfMedium" checked="checked"/> Instrumentation
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_ornamentation" value="ediromAnnotCategory_ornamentation" checked="checked"/> Ornamentation
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_correction" value="ediromAnnotCategory_correction" checked="checked"/> Correction
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="ediromAnnotCategory_partWriting" value="ediromAnnotCategory_partWriting" checked="checked"/> Part Writing
+                            </label>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Differences</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Highlight differences to other sources <button class="btn btn-default btn-sm pull-right diffSourceBtn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                    <!--<li class="list-group-item">Highlight ambiguous slurs<button class="btn btn-default btn-sm pull-right ambigSlurBtn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Editorial Commentary</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Annotations of Priority 1<button class="btn btn-default btn-sm pull-right annotPrio1Btn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                    <li class="list-group-item">Annotations of Priority 2<button class="btn btn-default btn-sm pull-right annotPrio2Btn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                    <li class="list-group-item">Annotations of Priority 3<button class="btn btn-default btn-sm pull-right annotPrio3Btn freidiListBtn" data-toggle="button" aria-pressed="false">Display</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"/>
+        <!--<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"/>-->
+        <script src="resources/js/bootstrap-slider.min.js"/>
+        <script src="resources/js/context.js"/>
+        <!--<script src="http://www.verovio.org/javascript/latest/verovio-toolkit.js"/>-->
+        <!--<script src="resources/js/verovio-toolkit-256Mb.js"/>-->
+        <script src="resources/js/verovio-toolkit-0.9.10-dev-215f725-256Mb.js"/>
+        <script src="resources/js/app.js"/>
+    </body>
+</html>

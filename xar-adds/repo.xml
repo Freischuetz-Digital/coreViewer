@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta xmlns="http://exist-db.org/xquery/repo">
+    <description>@title@</description>
+    <author>@author@</author>
+    <website>@website@</website>
+    <status>alpha</status>
+    <license>GNU GPL-3</license>
+    <copyright>true</copyright>
+    <type>application</type>
+    <target>@target@</target>
+    <prepare>pre-install.xql</prepare>
+    <finish/>
+    <permissions xmlns:repo="http://exist-db.org/xquery/repo" user="freidi" group="freidi" mode="rwxrwxr--"/>
+</meta>

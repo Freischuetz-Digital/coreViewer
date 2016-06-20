@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Freischütz Digital –&#160;Anmerkungen</title>
+        <meta name="author" content="Johannes Kepper"/>
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        <link href="resources/css/coreview.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h1>Freischütz Digital: CoreViewer</h1>
+            <div id="demoBox">
+                <div id="content"/>
+                <div id="sidebox">
+                    <label>Skalierung</label>
+                    <input id="scaleSlider" type="range" min="0.2" max="1.5" step="0.01"/>
+                    <button style="margin-top: 20px;" class="btn btn-primary" id="addView">Ansicht hinzufügen</button>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div id="loading" style="display: none;">
+            <span>
+                <i class="fa fa-cog fa-spin"/> lädt</span>
+        </div>
+        <div id="templates" style="display: none;">
+            <div class="viewBox">
+                <header>
+                    <h1>Core</h1>
+                    <select>
+                        <option value="core">Core</option>
+                        <optgroup label="Sources">
+                            <option value="A">Autograph</option>
+                            <option value="KA2">KA2</option>
+                        </optgroup>
+                    </select>
+                    <button class="btn btn-info btn-xs optionsBtn">
+                        <i class="fa fa-gears fa-lg fa-fw"/>
+                    </button>
+                    <button class="btn btn-info btn-xs closeBtn">
+                        <i class="fa fa-close fa-lg fa-fw"/>
+                    </button>
+                    <div class="scoreDef" style="display: none;">
+                        <div class="half">
+                            <h2>Besetzung</h2>
+                            <div class="staffDefs"/>
+                        </div>
+                        <div class="half">
+                            <h2>Hervorhebungen</h2>
+                            <button class="btn btn-primary btn-sm abbrevBtn abbrev_A">Kurzschreibweisen A</button>
+                            <button style="margin-top: 20px;" class="btn btn-primary btn-sm abbrevBtn abbrev_KA2">Kurzschreibweisen K<sup>A</sup>
+                                <sub>2</sub>
+                            </button>
+                            <button style="margin-top: 20px;" class="btn btn-primary btn-sm" onclick="getApps();">Differenzen markieren</button>
+                            <button style="margin-top: 50px;" class="btn btn-primary btn-sm refreshScoreDef">Partitur neu laden</button>
+                        </div>
+                    </div>
+                </header>
+                <div class="verovio"/>
+            </div>
+        </div>
+        <script src="resources/js/ace/ace.js"/>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"/>
+        <script src="http://www.verovio.org/javascript/latest/verovio-toolkit.js"/>
+        <script src="resources/js/coreview.js"/>
+    </body>
+</html>
