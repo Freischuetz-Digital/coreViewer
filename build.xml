@@ -28,7 +28,7 @@
         <mkdir dir="${build.dir}"/>
         <copydir dest="${build.dir}/coreViewer" src="src"/>
         <copy todir="${build.dir}/coreViewer" encoding="UTF-8" outputencoding="UTF-8">
-            <file file="xar-adds/controller.xml"/>
+            <file file="xar-adds/controller.xql"/>
             <file file="xar-adds/repo.xml"/>
             <file file="xar-adds/expath-pkg.xml"/>
             <file file="xar-adds/pre-install.xql"/>
@@ -41,7 +41,7 @@
                     <token key="title" value="FreiDi:coreViewer"/>
                     <token key="author" value="FreiDi - Johannes Kepper"/>
                     <token key="website" value="https://www.freischuetz-digital.de/tools/coreViewer"/>
-                    <token key="target" value="coreViewer"/>
+                    <token key="target" value="FreiDi_CoreViewer"/>
                 </replacetokens>      
             </filterchain>
         </copy>
