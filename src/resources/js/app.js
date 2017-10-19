@@ -801,7 +801,7 @@ function changeScale(view) {
 	
 	
 	
-	$($(view.renderTarget + ' svg').get(0)).attr('transform','scale(' + factor + ')');
+	$($(view.renderTarget + ' svg > svg > g.page-margin').get(0)).attr('transform','translate(0,0) scale(' + factor + ')');
 	$($(view.renderTarget).parent().get(0)).height(height * vfactor + 10);
 	$($(view.renderTarget).get(0)).width(width * hfactor + 10);
 	$($(view.renderTarget).get(0)).height(height * vfactor - 10);
