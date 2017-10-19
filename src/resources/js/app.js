@@ -24,13 +24,13 @@ Math.getUUID = function() {
  * this function renders an MEI file into SVG and inserts it in a given HTML element
  */
 function renderMEI(mei, target, func) {
-    var options = JSON.stringify({
+    var options = {
       	inputFormat: 'mei',
       	border: 0,
       	scale: 50,
       	ignoreLayout: 0,
       	noLayout: 1
-      });
+      }
     
 	vrvToolkit.setOptions( options );
 	vrvToolkit.loadData(mei + '\n');
