@@ -916,13 +916,13 @@ function prepareSVG(view) {
         
         if(window === top) {
         // die Seite läuft stand alone
-            link = { text: 'Open Facsimile', href: externalEdiromBaseLink + 'freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN + '_s' + staffN, target: '_blank' };
+            link = { text: 'Open Facsimile', href: externalEdiromBaseLink + 'freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN, target: '_blank' };
         }else {
         // die Seite läuft in einem iFrame
             link = { text: 'Open Facsimile', 
                     action: function(e){
                    	    e.preventDefault();
-                        window.parent.loadLink("xmldb:exist:///db/apps/contents/musicSources/freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN + '_s' + staffN'", {useExisting:true});
+                        window.parent.loadLink("xmldb:exist:///db/apps/contents/musicSources/freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN'", {useExisting:true});
                     }
             };
         }
