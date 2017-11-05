@@ -3,7 +3,7 @@
  */
 vrvToolkit = new verovio.toolkit();
 var svgns = "http://www.w3.org/2000/svg";
-var externalEdiromBaseLink = 'http:freischuetz-digital.de/edition/?uri=xmldb:exist:///db/apps/contents/musicSources/';
+var externalEdiromBaseLink = 'http://freischuetz-digital.de/edition/?uri=xmldb:exist:///db/apps/contents/musicSources/';
 var data = {};
 var views = {};
 
