@@ -3,7 +3,7 @@
  */
 vrvToolkit = new verovio.toolkit();
 var svgns = "http://www.w3.org/2000/svg";
-var externalEdiromBaseLink = 'http://rubin.upb.de:8092/exist/apps/EdiromOnline/?uri=xmldb:exist:///db/apps/contents/musicSources/';
+var externalEdiromBaseLink = 'http:freischuetz-digital.de/edition/?uri=xmldb:exist:///db/apps/contents/musicSources/';
 var data = {};
 var views = {};
 
@@ -30,7 +30,7 @@ function renderMEI(mei, target, func) {
       	scale: 50,
       	ignoreLayout: 0,
       	noLayout: 1
-      }
+      };
     
 	vrvToolkit.setOptions( options );
 	vrvToolkit.loadData(mei + '\n');
@@ -914,7 +914,7 @@ function prepareSVG(view) {
         var header = {header: desc}
         var link;
         
-        if(window === top) {
+        if(window === top || (typeof window.parent.loadLink !== 'function')) {
         // die Seite läuft stand alone
             link = { text: 'Open Facsimile', href: externalEdiromBaseLink + 'freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN, target: '_blank' };
         }else {
@@ -922,7 +922,9 @@ function prepareSVG(view) {
             link = { text: 'Open Facsimile', 
                     action: function(e){
                    	    e.preventDefault();
-                        window.parent.loadLink("xmldb:exist:///db/apps/contents/musicSources/freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN'", {useExisting:true});
+                   	    var completeLink = 'xmldb:exist:///db/apps/contents/musicSources/freidi-musicSource_' + view.source + '.xml#' + view.source + '_zoneOf_mov' + view.mdiv.n + '_measure' + measureN;
+                   	    console.log('Link: ' + completeLink);
+                        window.parent.loadLink(completeLink, {useExisting:true});
                     }
             };
         }
